@@ -1,3 +1,24 @@
+#!/bin/bash
+
+set -euo pipefail
+
+
+# Validate required environment variables
+if [[ -z "${DOCKERHUB_USERNAME:-}" ]]; then
+  echo "ERROR: DOCKERHUB_USERNAME environment variable is not set" >&2
+  exit 1
+fi
+
+if [[ -z "${DOCKERHUB_TOKEN:-}" ]]; then
+  echo "ERROR: DOCKERHUB_TOKEN environment variable is not set" >&2
+  exit 1
+fi
+
+if [[ -z "${DOCKER_REPO:-}" ]]; then
+  echo "ERROR: DOCKER_REPO environment variable is not set" >&2
+  exit 1
+fi
+
 NAMESPACE="${DOCKERHUB_USERNAME}"
 REPOSITORY="${DOCKER_REPO}"
 REGISTRY_URL="https://hub.docker.com/v2"
