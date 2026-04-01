@@ -30,7 +30,7 @@ echo "Checking if repository '${NAMESPACE}/${REPOSITORY}' exists..."
 
 # Check if repository exists using HEAD request
 if curl -s -o /dev/null -w "%{http_code}" \
-  -H "Authorization: Basic ${AUTH_HEADER}" \
+  -H "Authorization: Bearer ${AUTH_HEADER}" \
   "https://hub.docker.com/v2/namespaces/${NAMESPACE}/repositories/${REPOSITORY}/tags" \
   | grep -q "404"; then
   
@@ -39,7 +39,7 @@ if curl -s -o /dev/null -w "%{http_code}" \
   # Create the repository
   RESPONSE=$(curl -s -w "\n%{http_code}" \
     -X POST \
-    -H "Authorization: Basic ${AUTH_HEADER}" \
+    -H "Authorization: Bearer ${AUTH_HEADER}" \
     -H "Content-Type: application/json" \
     -d "{
       \"name\": \"${REPOSITORY}\",
