@@ -136,5 +136,5 @@ jobs:
     - name: Deploy
       env:
         IMAGE_TAG: ${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
-        DEPLOY_HOOK: ${{ secrets.DEPLOY_HOOK }}
+        DEPLOY_HOOK: ${{ secrets.DEPLOY_HOOK_WEBNOTE }}
       run: bash -xc "curl ${DEPLOY_HOOK}&imgURL=${REGISTRY}/${IMAGE_TAG}"
