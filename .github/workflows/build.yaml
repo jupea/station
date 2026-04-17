@@ -1,8 +1,9 @@
 name: build
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
+  # push:
+  #   branches: [ main ]
 
 env:
   REGISTRY: docker.io
@@ -55,4 +56,4 @@ jobs:
       env:
         IMAGE_TAG: ${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
         DEPLOY_HOOK: ${{ secrets.DEPLOY_HOOK }}
-      run: bash -xc "curl ${DEPLOY_HOOK}&imgURL=${REGISTRY}/${IMAGE_TAG}"
+      run: bash -xc "curl ${DEPLOY_HOOK}\&imgURL=${REGISTRY}/${IMAGE_TAG}"
